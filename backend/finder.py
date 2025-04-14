@@ -14,12 +14,13 @@ async def run():
             page TEXT,
             id TEXT,
             tag TEXT,
-            cmd TEXT
+            cmd TEXT,
+            input TEXT
         )
     """)
 
-    name = "signup"
-    # name = "eligibility"
+    # name = "signup"
+    name = "eligibility"
     # name = "legalname"
     # name = "namematch"
 
