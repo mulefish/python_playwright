@@ -18,7 +18,10 @@ async def run():
         )
     """)
 
-    name = "signup"
+    # name = "signup"
+    # name = "eligibility"
+    # name = "legalname"
+    name = "namematch"
 
     # Delete existing rows for this page name
     cursor.execute("DELETE FROM pages WHERE page = ?", (name,))

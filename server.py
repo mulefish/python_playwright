@@ -19,6 +19,18 @@ def index():
 
     return render_template("index.html", pages=pages)
 
+
+
+@app.route('/doPlaywright', methods=['POST'])
+def doPlaywright():
+    data = request.get_json()
+    print(data)
+    page = data.get("page", "")
+
+    return jsonify({
+        "original": page
+    })
+
 @app.route('/echo', methods=['POST'])
 def echo():
     data = request.get_json()
