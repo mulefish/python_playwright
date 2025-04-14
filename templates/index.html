@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dynamic Pages</title>
+  </head>
+  <body>
+    <h1>Available Pages</h1>
+    <div id="buttons">
+      {% for page in pages %}
+      <button onclick="doPlaywright('{{ page }}')">'{{ page }}'</button>
+      {% endfor %}
+    </div>
+
+    <hr />
+
+    <h2>Test Echo API</h2>
+    <input id="inputText" type="text" placeholder="Type something..." />
+    <button onclick="sendToServer()">Send</button>
+
+    <pre id="resultBox"></pre>
+
+    <script>
+      async function doPlaywright(page) {
+        const response = await fetch("/doPlaywright", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ page }),
+        });
+
+        const result = await response.json();
+        document.getElementById("resultBox").textContent = JSON.stringify(
+          result,
+          null,
+          2
+        );
+      }
+
+      async function sendToServer() {
+        const message = document.getElementById("inputText").value;
+
+        const response = await fetch("/echo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+
+        const result = await response.json();
+        document.getElementById("resultBox").textContent = JSON.stringify(
+          result,
+          null,
+          2
+        );
+      }
+    </script>
+  </body>
+</html>
