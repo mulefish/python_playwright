@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS pages (
     page TEXT,
     id TEXT,
     tag TEXT,
-    cmd TEXT
+    cmd TEXT, 
+    input TEXT           
 )
 """)
 

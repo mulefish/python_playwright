@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import sqlite3
 import os
 import asyncio
-from playwright_runner import scrape_page  # ⬅️ import your new module
+from playwright_runner import scrape_page
 
 app = Flask(__name__)
 DB_PATH = "pages.db"

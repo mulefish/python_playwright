@@ -10,10 +10,10 @@ def print_all_pages():
     rows = cursor.fetchall()
 
     # Print rows
-    print("rowId | page | id | tag | cmd")
+    print("rowId | page | id | tag | cmd | input")
     print("-" * 50)
     for row in rows:
-        print(f"{row[0]} | {row[1]} | {row[2]} | {row[3]} | {row[4]}")
+        print(f"{row[0]} | {row[1]} | {row[2]} | {row[3]} | {row[4]} | {row[5]}")
 
     # Close connection
     conn.close()

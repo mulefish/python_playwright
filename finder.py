@@ -18,10 +18,10 @@ async def run():
         )
     """)
 
-    # name = "signup"
+    name = "signup"
     # name = "eligibility"
     # name = "legalname"
-    name = "namematch"
+    # name = "namematch"
 
     # Delete existing rows for this page name
     cursor.execute("DELETE FROM pages WHERE page = ?", (name,))
@@ -37,8 +37,8 @@ async def run():
         await page.wait_for_timeout(3000)
 
         elements = await page.query_selector_all("[data-test-id], [data-testid]")
-        ignore = ['DIV', 'P', 'HEADER', 'LABEL', 'H2', 'I', 'FORM']
-
+        #ignore = ['DIV', 'P', 'HEADER', 'LABEL', 'H2', 'I', 'FORM']
+        ignore = []
         for el in elements:
             testid = await el.get_attribute("data-test-id") or await el.get_attribute("data-testid")
             tag = await el.evaluate("(node) => node.tagName")
@@ -46,8 +46,8 @@ async def run():
                 print(f"{name}, {testid}, {tag}")
                 # Insert into database
                 cursor.execute(
-                    "INSERT INTO pages (page, id, tag, cmd) VALUES (?, ?, ?, ?)",
-                    (name, testid, tag, "")
+                    "INSERT INTO pages (page, id, tag, cmd, input) VALUES (?, ?, ?, ?, ?)",
+                    (name, testid, tag, "", "")
                 )
 
         await browser.close()

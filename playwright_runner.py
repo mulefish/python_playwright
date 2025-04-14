@@ -31,7 +31,7 @@ async def scrape_page(name: str):
 
         url = f"http://localhost:4200/{name}"
         await page.goto(url)
-        await page.wait_for_timeout(3000)
+        await page.wait_for_timeout(1000)
 
         elements = await page.query_selector_all("[data-test-id], [data-testid]")
         ignore = ['DIV', 'P', 'HEADER', 'LABEL', 'H2', 'I', 'FORM']
